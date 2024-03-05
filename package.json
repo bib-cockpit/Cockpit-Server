@@ -1,7 +1,7 @@
 {
-  "name": "bae-urlaubsplaner-server",
+  "name": "bae-cockpit-server",
   "version": "0.0.6",
-  "description": "Server für die Urlaubsplaner Application",
+  "description": "Server für die Cockpit Application",
   "main": "index.ts",
   "scripts": {
     "build": "tsc",
