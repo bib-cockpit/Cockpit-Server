@@ -10,7 +10,6 @@ export class ProjektpunkteroutsClass {
   private Debug: DebugClass;
   private Database: ProjektpunkteDBClass;
   private Authentication: AuthenticationClass;
-  private Testvar: any;
 
   constructor() {
 
@@ -28,14 +27,15 @@ export class ProjektpunkteroutsClass {
 
 
         let query      = req.query;
-        let Projektkey = <string>query.projektkey;
-        let Deleted    = <string>query.deleted === "false" ? false : true;
+        let Projektkey       = <string>query.projektkey;
+        let Deleted         = <string>query.deleted        === "false" ? false : true;
+        let Schnellaufgabe: boolean = <string>query.Schnellaufgabe === "false" ? false : true;
 
         console.log('Real Projektpunkte: ');
         console.log('Projektkey: ' + Projektkey);
         console.log('Deleted:    ' + Deleted);
 
-        this.Database.ReadProjektpunkteliste(Projektkey, Deleted).then((liste: IProjektpunktestruktur[]) => {
+        this.Database.ReadProjektpunkteliste(Projektkey, Deleted, Schnellaufgabe).then((liste: IProjektpunktestruktur[]) => {
 
           res.status(200).send(liste);
 

@@ -40,6 +40,7 @@ interface IProjektpunktestruktur {
   ProtokollPublic:     boolean;
   LiveEditor:          boolean;
   Meilenstein:         boolean;
+  Schnellaufgabe:      boolean;
   Meilensteinstatus:   string;
   BemerkungMouseOver:  boolean;
   EndeMouseOver:       boolean;
@@ -119,6 +120,7 @@ const Projektpunktshema = new mongoose.Schema({
   ProtokollPublic:        {type: Boolean, required: false, default: true},
   Meilenstein:            {type: Boolean, required: false, default: false},
   Matrixanwendung:        {type: Boolean, required: false, default: true},
+  Schnellaufgabe:         {type: Boolean, required: false, default: false},
   Meilensteinstatus:      {type: String,  required: false},
   FileDownloadURL:        {type: String,  required: false},
   Filename:               {type: String,  required: false},

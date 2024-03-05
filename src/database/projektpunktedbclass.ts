@@ -15,7 +15,7 @@ export class ProjektpunkteDBClass {
     this.Const = new Constclass();
   }
 
-  public ReadProjektpunkteliste(projektkey: string, deleted: boolean): Promise<any> {
+  public ReadProjektpunkteliste(projektkey: string, deleted: boolean, schnellaufgabe: boolean): Promise<any> {
 
     try {
 
@@ -26,7 +26,7 @@ export class ProjektpunkteDBClass {
 
         ProjektpunktemodelClass = model(this.Const.ProjektpunktecollectionName, Projektpunktshema);
 
-        ProjektpunktemodelClass.find( { Deleted: deleted, Projektkey: projektkey } ).then((data: any) => {
+        ProjektpunktemodelClass.find( { Deleted: deleted, Projektkey: projektkey, Schnellaufgabe: schnellaufgabe } ).then((data: any) => {
 
           data.forEach((projektpunkt) => {
 

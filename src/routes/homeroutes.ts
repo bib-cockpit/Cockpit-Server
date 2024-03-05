@@ -44,7 +44,7 @@ class HomerouterClass {
       let Dirname: string  = __dirname;
       let CWD: string  = process.cwd();
       let Status: string;
-      let ShowDebug: boolean = false;
+      let ShowDebug: boolean = true;
 
       this.homerouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 
