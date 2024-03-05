@@ -145,10 +145,14 @@ let Strategy = new BearerStrategy(options, function(token: ITokenPayload, done: 
 
   if(token) {
 
+    Debug.ShowInfoMessage('Authentication Token ok. User' + token.unique_name, 'index.ts', 'Server');
+
     user  = { username: token.unique_name };
     error = null;
   }
   else {
+
+    Debug.ShowInfoMessage('Authentication Token Fehler!!!' + token.unique_name, 'index.ts', 'Server');
 
     user  = false;
     error = 'no user';

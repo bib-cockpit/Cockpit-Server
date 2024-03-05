@@ -25,9 +25,7 @@ export class AuthenticationClass {
       }
       else {
 
-
-
-        res.status(401).send('User Unauthorized');
+        res.status(401).send('Authenticater Libary: user is false -> User Unauthorized!');
       }
 
     })(req, res, next);

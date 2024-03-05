@@ -44,6 +44,7 @@ class HomerouterClass {
       let Dirname: string  = __dirname;
       let CWD: string  = process.cwd();
       let Status: string;
+      let ShowDebug: boolean = false;
 
       this.homerouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 
@@ -59,62 +60,72 @@ class HomerouterClass {
 
         }).finally(() => {
 
-          html =
-            `<body style="font-family: Tahoma"><b>Cockpit Server</b><br><br>
-           <table>
-           <tr>
-              <td>Versionsnummer:</td><td>${this.Info.Verion}</td>
-          </tr>
-          <tr>
-              <td>Versionsdatum:</td><td>${this.Info.Versionsdatum}</td>
-          </tr>
-          <tr>
-              <td>Environment (original):</td><td>${process.env.NODE_ENV}</td>
-          </tr>
-          <tr>
-              <td>CWD:</td><td>${CWD}</td>
-          </tr>
-          <tr>
-              <td>Filename:</td><td>${Filename}</td>
-          </tr>
-          <tr>
-              <td>Dirname:</td><td>${Dirname}</td>
-          </tr>
-          <tr>
-              <td>NODE ENV:</td><td>${this.Config.NODE_ENV}</td>
-          </tr>
-           <tr>
-              <td>PORT:</td><td>${this.Config.PORT}</td>
-          </tr>
-          <tr>
-              <td>Statusmessage:</td><td>${this.Config.Statusmessage}</td>
-          </tr>
-          <tr>
-              <td>DB Name:</td><td>${this.Config.COSMOSDB_DBNAME}</td>
-          </tr>
-          <tr>
-              <td>DB Host:</td><td>${this.Config.COSMOSDB_HOST}</td>
-          </tr>
-          <tr>
-              <td>DB Port:</td><td>${this.Config.COSMOSDB_PORT}</td>
-          </tr>
-          <tr>
-              <td>DB Unsername:</td><td>${this.Config.COSMOSDB_USER}</td>
-          </tr>
-          <tr>
-              <td>DB Passwort:</td><td>${this.Config.COSMOSDB_PASSWORD}</td>
-          </tr>
-          <tr>
-              <td>TENANT ID:</td><td>${this.Config.TENANT_ID}</td>
-          </tr>
-          <tr>
-              <td>SERVER APPLICATION ID:</td><td>${this.Config.SERVER_APPLICATION_ID}</td>
-          </tr>
-          <tr>
-            <td>DB Connection Status:</td><td>${Status}</td>
-          </tr>
-          </table>
-          </body>`;
+          if(ShowDebug) {
+
+            html =
+              `<body style="font-family: Tahoma"><b>Cockpit Server</b><br><br>
+             <table>
+             <tr>
+                <td>Versionsnummer:</td><td>${this.Info.Verion}</td>
+            </tr>
+            <tr>
+                <td>Versionsdatum:</td><td>${this.Info.Versionsdatum}</td>
+            </tr>
+            <tr>
+                <td>Environment (original):</td><td>${process.env.NODE_ENV}</td>
+            </tr>
+            <tr>
+                <td>CWD:</td><td>${CWD}</td>
+            </tr>
+            <tr>
+                <td>Filename:</td><td>${Filename}</td>
+            </tr>
+            <tr>
+                <td>Dirname:</td><td>${Dirname}</td>
+            </tr>
+            <tr>
+                <td>NODE ENV:</td><td>${this.Config.NODE_ENV}</td>
+            </tr>
+             <tr>
+                <td>PORT:</td><td>${this.Config.PORT}</td>
+            </tr>
+            <tr>
+                <td>Statusmessage:</td><td>${this.Config.Statusmessage}</td>
+            </tr>
+            <tr>
+                <td>DB Name:</td><td>${this.Config.COSMOSDB_DBNAME}</td>
+            </tr>
+            <tr>
+                <td>DB Host:</td><td>${this.Config.COSMOSDB_HOST}</td>
+            </tr>
+            <tr>
+                <td>DB Port:</td><td>${this.Config.COSMOSDB_PORT}</td>
+            </tr>
+            <tr>
+                <td>DB Unsername:</td><td>${this.Config.COSMOSDB_USER}</td>
+            </tr>
+            <tr>
+                <td>DB Passwort:</td><td>${this.Config.COSMOSDB_PASSWORD}</td>
+            </tr>
+            <tr>
+                <td>TENANT ID:</td><td>${this.Config.TENANT_ID}</td>
+            </tr>
+            <tr>
+                <td>SERVER APPLICATION ID:</td><td>${this.Config.SERVER_APPLICATION_ID}</td>
+            </tr>
+            <tr>
+                <td>SERVER APPLICATION SECRET:</td><td>${this.Config.SERVER_APPLICATION_SECRET}</td>
+            </tr>
+            <tr>
+              <td>DB Connection Status:</td><td>${Status}</td>
+            </tr>
+            </table>
+            </body>`;
+          }
+          else {
+
+            html = 'Cockpit Server';
+          }
 
           res.status(200).send(html);
         });
