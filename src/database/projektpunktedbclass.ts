@@ -26,20 +26,38 @@ export class ProjektpunkteDBClass {
 
         ProjektpunktemodelClass = model(this.Const.ProjektpunktecollectionName, Projektpunktshema);
 
-        ProjektpunktemodelClass.find( { Deleted: deleted, Projektkey: projektkey, Schnellaufgabe: schnellaufgabe } ).then((data: any) => {
+        if(schnellaufgabe === true) {
 
-          data.forEach((projektpunkt) => {
+          ProjektpunktemodelClass.find( { Deleted: deleted, Projektkey: projektkey, Schnellaufgabe: true }).then((data: any) => {
 
-            Liste.push(projektpunkt._doc);
+            data.forEach((projektpunkt) => {
+
+              Liste.push(projektpunkt._doc);
+            });
+
+            resolve(Liste);
+
+          }).catch((error: any) => {
+
+            reject(error);
           });
+        }
+        else {
 
-          resolve(Liste);
+          ProjektpunktemodelClass.find( { Deleted: deleted, Projektkey: projektkey }).then((data: any) => {
 
-        }).catch((error: any) => {
+            data.forEach((projektpunkt) => {
 
-          reject(error);
-        });
+              Liste.push(projektpunkt._doc);
+            });
 
+            resolve(Liste);
+
+          }).catch((error: any) => {
+
+            reject(error);
+          });
+        }
       });
 
     } catch (error) {
