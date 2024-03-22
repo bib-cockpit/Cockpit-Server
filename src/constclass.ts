@@ -2,6 +2,7 @@ export class Constclass {
 
   public readonly NONE: string;
   public readonly StandortecollectionName: string;
+  public readonly FilescollectionName: string;
   public readonly MitarbeitercollectionName: string;
   public readonly ProjektecollectionName: string;
   public readonly SettingscollectionName: string;
@@ -20,6 +21,7 @@ export class Constclass {
 
     this.NONE                         = 'none';
     this.StandortecollectionName      = 'standorte';
+    this.FilescollectionName          = 'files';
     this.MitarbeitercollectionName    = 'mitarbeiter';
     this.SettingscollectionName       = 'mitarbeitersettings';
     this.ProjektecollectionName       = 'projekte';

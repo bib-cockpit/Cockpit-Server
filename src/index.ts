@@ -54,6 +54,7 @@ import {SaveLOPListeroutsClass} from "./routes/saveloplisterouts";
 import {SendReminderroutsClass} from "./routes/sendreminderrouts";
 import {FestlegungskategorieouterClass} from "./routes/festlegungskategorierouts";
 import {SimontabelleroutsClass} from "./routes/simontabellerouts";
+import {FilesrouterClass} from "./routes/filesrouts";
 
 
 const app: Application = express();
@@ -90,6 +91,7 @@ const SendLOPListerouter: SendLOPListeroutsClass = new SendLOPListeroutsClass();
 const SaveFestlegungenrouts: SaveFestlegungenroutsClass = new SaveFestlegungenroutsClass();
 const Addsubscriptionrouts: AddsubscriptionroutsClass = new AddsubscriptionroutsClass();
 const Simontabellenrouts: SimontabelleroutsClass = new SimontabelleroutsClass();
+const Filesroutes: FilesrouterClass = new FilesrouterClass();
 const NONE = 'NONE';
 
 let Port: string              = 'none';
@@ -186,6 +188,7 @@ SaveLOPListerouter.Init(Config);
 Addsubscriptionrouts.Init(Config);
 Simontabellenrouts.Init(Config);
 
+Filesroutes.SetRoutes();
 Homerouter.SetRoutes();
 Errorrouter.SetRoutes();
 Standorterouter.SetRoutes();
@@ -247,6 +250,7 @@ app.use('/subscription',   Addsubscriptionrouts.subscriptionrouter);
 app.use('/notizenkapitel', Notizenkapitelroutes.notizenkapitelrouter);
 app.use('/festlegungskategorie', Festlegungskategorieroutes.festlegungskategorierouter);
 app.use('/simontabellen',        Simontabellenrouts.simontabellerouter);
+app.use('/files',                Filesroutes.filesrouter);
 
 // eventcallback
 

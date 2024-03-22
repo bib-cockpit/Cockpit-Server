@@ -1,8 +1,7 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 import {IVerfasserstruktur, Verfassershema} from "./verfasserstruktur_server";
 import {IProjektbeteiligtestruktur, Projektbeteiligteeshema} from "./projektbeteiligtestruktur_server";
 import {Bauteilshema, IBauteilstruktur} from "./bauteilstruktur_server";
-import {IProjektfirmenstruktur, Projektfirmenshema} from "./projektfirmenstruktur_server";
 
 interface IProjektestruktur  {
 
@@ -13,7 +12,6 @@ interface IProjektestruktur  {
   Projektkey:           string;
   Zeitstempel:          number;
   Zeitpunkt:            string;
-  Projektmailadresse:   string;
   Strasse:              string;
   PLZ:                  string;
   Ort:                  string;
@@ -25,7 +23,6 @@ interface IProjektestruktur  {
   Status:               string;
   Verfasser:            IVerfasserstruktur;
   Beteiligtenliste:     IProjektbeteiligtestruktur[];
-  Firmenliste:          IProjektfirmenstruktur[];
   Bauteilliste:         IBauteilstruktur[];
   MitarbeiterIDListe:   string[];
   ProjektIsReal:        boolean;
@@ -46,12 +43,15 @@ interface IProjektestruktur  {
   TeamsDescription: string;
   TeamsName:        string;
 
+  ProjektlogofileID:     string;
+  Projektlogobreite:     string;
+
+  BilderFolderID:        string;
   ProjektFolderID:       string;
   ProtokolleFolderID:    string;
   BautagebuchFolderID:   string;
   BaustellenLOPFolderID: string;
-  RechnungListefolderID: string;
-  LastLOPEintragnummer:   number;
+  LastLOPEintragnummer:  number;
 };
 
 const Projekteshema = new mongoose.Schema({
@@ -61,7 +61,6 @@ const Projekteshema = new mongoose.Schema({
   StellvertreterID: {type: String,  required: false},
   StandortID:       {type: String,  required: false},
   Projektkey:       {type: String,  required: false},
-  Projektmailadresse: {type: String,  required: false},
   Projektkurzname:  {type: String,  required: false},
   OutlookkategorieID: {type: String,  required: false},
   Projektnummer:    {type: String,  required: false},
@@ -92,7 +91,6 @@ const Projekteshema = new mongoose.Schema({
   Verfasser:          Verfassershema,
   Beteiligtenliste:   [Projektbeteiligteeshema],
   Bauteilliste:       [Bauteilshema],
-  Firmenliste:        [Projektfirmenshema],
   MitarbeiterIDListe: [{type: String}],
 
   LastLOPEintragnummer: {type: Number, required: false},
@@ -100,13 +98,15 @@ const Projekteshema = new mongoose.Schema({
   TeamsDescription:     {type: String,  required: false},
   TeamsName:            {type: String,  required: false},
 
+  ProjektlogofileID:   {type: String,  required: false},
+  Projektlogobreite:   {type: String,  required: false},
+
   ProjektFolderID:       {type: String,  required: false},
   ProtokolleFolderID:    {type: String,  required: false},
   BautagebuchFolderID:   {type: String,  required: false},
   BaustellenLOPFolderID: {type: String,  required: false},
-  RechnungListefolderID: {type: String,  required: false}
+  BilderFolderID:        {type: String,  required: false},
 });
 
 export { IProjektestruktur, Projekteshema };
-
 

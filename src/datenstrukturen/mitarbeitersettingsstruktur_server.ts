@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import {Aufgabenansichtshema, IAufgabenansichtstruktur} from "./aufgabenansichtstruktur_server";
+import {Aufgabenpersonenfiltershema, IAufgabenpersonenfilterstruktur} from "./aufgabenpersonenfilterstruktur_server";
 
 interface IMitarbeitersettingsstruktur  {
 
@@ -15,17 +16,6 @@ interface IMitarbeitersettingsstruktur  {
   OberkostengruppeFilter:  number;
   HauptkostengruppeFilter: number;
   UnterkostengruppeFilter: number;
-
-  /*
-  AufgabenShowOffen:        boolean;
-  AufgabenShowGeschlossen:  boolean;
-  AufgabenShowBearbeitung:  boolean;
-  AufgabenShowRuecklauf:    boolean;
-  AufgabenShowBilder:       boolean;
-  AufgabenShowMeilensteinOnly: boolean;
-   AufgabenShowMeilensteine:  boolean;
-
-   */
 
   Aufgabenansicht: IAufgabenansichtstruktur[];
 
@@ -65,6 +55,8 @@ interface IMitarbeitersettingsstruktur  {
   UrlaubShowMeinenUrlaub:         boolean;
 
   LOPListeGeschlossenZeitfilter: number;
+
+  AufgabenPersonenfilter: IAufgabenpersonenfilterstruktur[];
 };
 
 const Mitarbeitersettingsshema = new mongoose.Schema({
@@ -125,6 +117,8 @@ const Mitarbeitersettingsshema = new mongoose.Schema({
   UrlaubShowFeiertage_DE:      {type: Boolean, default: true},
   UrlaubShowFeiertage_BG:      {type: Boolean, default: true},
   UrlaubShowMeinenUrlaub:      {type: Boolean, default: true},
+
+  AufgabenPersonenfilter:      {type: [Aufgabenpersonenfiltershema], default: []},
 });
 
 export { Mitarbeitersettingsshema, IMitarbeitersettingsstruktur };
