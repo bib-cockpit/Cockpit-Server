@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import {IVerfasserstruktur, Verfassershema} from "./verfasserstruktur_server";
 import {IProjektbeteiligtestruktur, Projektbeteiligteeshema} from "./projektbeteiligtestruktur_server";
 import {Bauteilshema, IBauteilstruktur} from "./bauteilstruktur_server";
+import {Foldershema, IFolderstruktur} from "./folderstruktur_server";
 
 interface IProjektestruktur  {
 
@@ -52,6 +53,8 @@ interface IProjektestruktur  {
   BautagebuchFolderID:   string;
   BaustellenLOPFolderID: string;
   LastLOPEintragnummer:  number;
+
+  Folderliste: IFolderstruktur[];
 };
 
 const Projekteshema = new mongoose.Schema({
@@ -106,6 +109,8 @@ const Projekteshema = new mongoose.Schema({
   BautagebuchFolderID:   {type: String,  required: false},
   BaustellenLOPFolderID: {type: String,  required: false},
   BilderFolderID:        {type: String,  required: false},
+
+  Folderliste:        [Foldershema],
 });
 
 export { IProjektestruktur, Projekteshema };

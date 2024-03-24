@@ -11,12 +11,11 @@ interface IBauteilstruktur  {
 
 const Bauteilshema = new mongoose.Schema({
 
-  _id:              false,
   BauteilID:        {type: String,  required: false},
   Bauteilname:      {type: String,  required: false},
   Listenposition:   {type: Number,  required: false},
   Geschossliste:    [Geschossshema],
-});
+}, {_id: false});
 
 export { IBauteilstruktur, Bauteilshema };
 
